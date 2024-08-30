@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZPHS Thakkallapally</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="studentCSS.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var classSelect = document.getElementById('class');
+            var subjectSelect = document.getElementById('subject');
+            var physicsOption = document.querySelector('option[value="p"]');
+            var biologyOption = document.querySelector('option[value="b"]');
+            var scienceOption = document.querySelector('option[value="s"]');
+
+            classSelect.addEventListener('change', function() {
+                var selectedClass = classSelect.value;
+
+                subjectSelect.selectedIndex = 0;
+
+                if (selectedClass === '6' || selectedClass === '7') {
+                    physicsOption.style.display = 'none';
+                    biologyOption.style.display = 'none';
+                } else {
+                    physicsOption.style.display = '';
+                    biologyOption.style.display = '';
+                }
+
+                if (selectedClass === '8' || selectedClass === '9' || selectedClass === '10') {
+                    scienceOption.style.display = 'none';
+                } else {
+                    scienceOption.style.display = '';
+                }
+            });
+
+            document.getElementById('submit').addEventListener('click', function(event) {
+                event.preventDefault(); 
+                go(); 
+            });
+
+            function go() {
+                var selectedClass = document.getElementById('class').value;
+                var selectedSubject = document.getElementById('subject').value;
+
+                if (selectedClass && selectedSubject) {
+                    // Redirect based on the selected class and subject
+                    window.location.href = getBookUrl(selectedClass, selectedSubject);
+                }
+            }
+
+            function getBookUrl(selectedClass, selectedSubject) {
+                var bookUrls = {
+                    "6": {
+                        "t": "https://scert.telangana.gov.in/pdf/publication/ebooks2019/6th%20class%20telugu%20fl.pdf",
+                        "h": "https://scert.telangana.gov.in/pdf/publication/ebooks2019/6th%20hindi%20sl%202020-21.pdf",
+                        "e": "https://scert.telangana.gov.in/pdf/publication/ebooks2019/6th%20class%20english.pdf",
+                        "m": "https://scert.telangana.gov.in/pdf/publication/ebooks2019/6th%20class%20maths%20em.pdf",
+                        "s": "https://scert.telangana.gov.in/pdf/publication/ebooks2019/6%20general%20science%20em%202020-21.pdf",
+                        "so": "https://scert.telangana.gov.in/pdf/publication/ebooks2019/6%20social%20em%202020-21.pdf"
+                    },
+                    "7": {
+                        "t": "https://scert.telangana.gov.in/pdf/publication/ebooks2019/7th%20class%20telugu%20fl.pdf",
+                        "h": "https://scert.telangana.gov.in/pdf/publication/ebooks2019/7th%20hindi%20sl%202020-21.pdf",
+                        "e": "https://scert.telangana.gov.in/pdf/publication/ebooks2019/7th%20class%20english.pdf",
+                        "m": "https://scert.telangana.gov.in/pdf/publication/ebooks2019/7th%20class%20maths%20em.pdf",
+                        "s": "https://scert.telangana.gov.in/pdf/publication/ebooks2019/7%20general%20science%20em%202020-21.pdf",
+                        "so": "https://scert.telangana.gov.in/pdf/publication/ebooks2019/7%20social%20em%202020-21.pdf"
+                    },
+                    "8": {
+                        "t": "https://scert.telangana.gov.in/pdf/publication/ebooks2019/8th%20class%20telugu%20fl.pdf",
+                        "h": "https://scert.telangana.gov.in/pdf/publication/ebooks2019/8th%20hindi%20sl%202020-21.pdf",
+                        "e": "https://scert.telangana.gov.in/PDF/publication/ebooks/8_ENG.pdf",
+                        "m": "https://scert.telangana.gov.in/PDF/publication/ebooks/8EM_MAT.pdf",
+                        "p": "https://scert.telangana.gov.in/pdf/publication/ebooks2019/8%20physics%20em%202020-21.pdf",
+                        "b": "https://scert.telangana.gov.in/pdf/publication/ebooks2019/8%20bio%20sci%20em%202020-21.pdf",
+                        "so": "https://scert.telangana.gov.in/pdf/publication/ebooks2019/8%20social%20em%202020-21.pdf"
+                    },
+                    "9": {
+                        "t": "https://scert.telangana.gov.in/pdf/publication/ebooks2019/9th%20telugu%20fl%20inner%202021-22%20with%20qr%20codes%20for%20website.pdf",
+                        "h": "https://scert.telangana.gov.in/pdf/publication/ebooks2019/9th%20hindi%20sl%202020-21.pdf",
+                        "e": "https://scert.telangana.gov.in/pdf/publication/ebooks2019/9th%20eng.pdf",
+                        "m": "https://scert.telangana.gov.in/pdf/publication/ebooks2019/ix%20maths%20em.pdf",
+                        "p": "https://scert.telangana.gov.in/pdf/publication/ebooks2019/9%20physics%20em%202020-21.pdf",
+                        "b": "https://scert.telangana.gov.in/pdf/publication/ebooks2019/ix%20biology%20em.pdf",
+                        "so": "https://scert.telangana.gov.in/pdf/publication/ebooks2019/9th%20social%20em.pdf"
+                    },
+                    "10": {
+                        "t": "https://scert.telangana.gov.in/pdf/publication/ebooks2019/10th%20telugu%20fl%202020-21.pdf",
+                        "h": "https://scert.telangana.gov.in/pdf/publication/ebooks2019/10th%20hindi%20sl%202020-21.pdf",
+                        "e": "https://scert.telangana.gov.in/pdf/publication/ebooks2019/10th%20class%20english%202020-21%2020.pdf",
+                        "m": "https://scert.telangana.gov.in/pdf/publication/ebooks2019/xth%20maths%20em.pdf",
+                        "p": "https://scert.telangana.gov.in/pdf/publication/ebooks2019/x%20physics%20em.pdf",
+                        "b": "https://scert.telangana.gov.in/pdf/publication/ebooks2019/x%20biology%20em.pdf",
+                        "so": "https://scert.telangana.gov.in/pdf/publication/ebooks2019/10th%20social%20em.pdf"
+                    }
+                };
+                return bookUrls[selectedClass][selectedSubject];
+            }
+        });
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">ZPHS Thakkallapally</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav ml-auto">
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="student.html">Students</a>
+                <a class="nav-link" href="teacher.html">Teachers</a>
+                <a class="nav-link" href="academics.html">Academics</a>
+                <a class="nav-link" href="achievements.html">Achievements</a>
+                <a class="nav-link" href="aboutus.html">About Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Select a Book Form -->
+    <div class="container mt-5">
+        <h2>Select a Book</h2>
+        <form id="academics-form">
+            <div class="form-group">
+                <label for="class">Select Class:</label>
+                <select class="form-control" id="class" name="class">
+                    <option value="">Select</option>
+                    <option value="6">6th Class</option>
+                    <option value="7">7th Class</option>
+                    <option value="8">8th Class</option>
+                    <option value="9">9th Class</option>
+                    <option value="10">10th Class</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="subject">Select Subject:</label>
+                <select class="form-control" id="subject" name="subject">
+                    <option value="">Select</option>
+                    <option value="t">Telugu</option>
+                    <option value="h">Hindi</option>
+                    <option value="e">English</option>
+                    <option value="m">Maths</option>
+                    <option value="s">Science</option>
+                    <option value="p">Physics</option>
+                    <option value="b">Biology</option>
+                    <option value="so">Social Studies</option>
+                </select>
+            </div>
+            <button type="submit" id="submit" class="btn btn-primary">Go</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
